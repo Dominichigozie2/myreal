@@ -6,6 +6,7 @@
 :root{
     --bg1: #86868709;
     --bg2: #d7480a;
+    /* --bg2:  rgb(0, 255, 0); */
     --bg3: #48474720;
     --bg4: #161616;
     --bg5: rgb(47, 47, 47);
@@ -192,13 +193,30 @@ section{
 .home{
     width: 100%;
     height: 100vh;
-    background: url(../img/laptop1.jpg);
+    animation:bg 40s steps(1) infinite;
     background-repeat: no-repeat;
     background-position: center right;
     background-size: cover;
     color: var(--clr);
     position: relative;
 }
+@keyframes bg{
+    0%{
+        background: url(../img/laptop1.jpg);
+        background-repeat: no-repeat;
+        background-position: center right;
+        background-size: cover;
+    }
+   50%{
+    background: url(../img/background3.jpg);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+   }
+}
+
+
+
 .home-bg{
     display: grid;
     place-content: center;
@@ -521,6 +539,7 @@ section{
     border-radius: 5px;
     user-select: none;
     overflow: hidden;
+    background: var(--bg3);
     box-shadow: 0 0 10px rgb(218, 218, 218);
 }
 .serve p{
@@ -529,9 +548,9 @@ section{
 }
 .serve h1{
     padding: .5rem;
-    background: var(--bg4);
     color: var(--bg2);
     text-transform: uppercase;
+    background:var(--bg5);
 }
 .serve i{
     font-size: 3rem;
@@ -646,7 +665,6 @@ section{
 /* the cleint page starts here */
 .client-container{
     background: var(--bg4);
-    z-index: -100;
 }
 .testimonnial{
 
@@ -674,87 +692,91 @@ section{
     letter-spacing: 5px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
-
-.comment-container::-webkit-scrollbar{
-    width: 1px;
-}
-.comment-container{
-    --space: 1rem;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 16rem;
-    gap: 2rem;
-    width: 52%;
-    padding: 1rem;
-    background: var(--bg4);
-    overflow-x: scroll;
-    place-self: center;
-    overscroll-behavior-inline: contain;
-}
-
-.comment p{
-    color: #fff;
-}
-
-.comment{
-    background: black;
-    height: 40vh;
+.card-container{
     display: flex;
-    text-align: center;
-    flex-direction: column;
+    width: 50%;
+    overflow: hidden;
+    height: 60vh;
+    place-content: center;
     position: relative;
+}
+
+.card-container i{
+    color: var(--bg-clr);
+    font-size: 3rem;
+    top: 50%;
+    position: absolute;
+}
+.next{
+    right: .5rem;
+}
+.previous{
+    left: .5rem;
+    z-index: 2;
+}
+.card-content{
+    /* background: blue; */
+    width: 100%;
+    display: flex;
+    /* overflow: hidden; */
+    place-content: center;
+    position: relative;
+    transition: all 500ms ease-in;
+}
+.card{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
-    overflow: hidden;
-    padding: .4rem;
-}
-.inline-snap{
-    scroll-snap-type: inline mandatory;
-    scroll-padding-inline: var(--space);
-  }
-.inline-snap>*{
-    scroll-snap-align: start;
-}
-.comment::before{
-    content: "";
-    background: orangered;
+    padding: 4rem 2rem;
+    /* background-color: red; */
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 25%;
 }
-
-
-.comment .image{
- width: 100%;
- display: flex;
- place-content: center;
- padding: 1rem;
- z-index: 10;
-}
-.comment .image img{
-    width: 100px;
-    height: 100px;
+.card-image{
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    border: 10px double black;
-    object-fit: cover;
 }
-.article-btn{
-    padding: .7rem;
-    margin: 1rem;
-    background: orangered;
-    color: #fff;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: all 500ms ease;
+
+.card-image img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 }
-.article-btn:hover{
-    background: var(--bg4);
-    box-shadow: 0 0 12px var(--bg2);
+.card-name{
+    padding-top: 2rem;
+    color: var(--bg-clr);
+    font-size: 2rem;
+    font-weight: bolder;
 }
+.card-text{
+    width: 60%;
+    text-align: center;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    color: var(--clr);
+    padding: 1rem 0;
+}
+.navigator{
+    display: flex;
+    gap: 1rem;
+    padding: 2rem;
+}
+.navigator span{
+  background:#333;
+  width: 30px;
+  height: 30px;
+ border-radius: 50%;
+ cursor: pointer;
+}
+.navigator .current-slide{
+background: var(--bg2);
+}
+.is-hidden{
+    display: none;
+}
+
 
 
 
@@ -1261,6 +1283,18 @@ transition: all 1700ms ease-in-out;
         width: 100%;
     }
    .form{
+    width: 100%;
+   }
+   .card-text{
+    width: 100%;
+   }
+   .card{
+    width: 100%;
+   }
+   .card-container{
+    width: 100%;
+   }
+   .card-content{
     width: 100%;
    }
 }
